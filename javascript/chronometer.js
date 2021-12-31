@@ -2,38 +2,33 @@ class Chronometer {
   constructor() {
     this.currentTime = 0;
     this.intervalId = null;
-    // Bonus this.currentMilliseconds = 0;
-    // Bonus this.intervalIdMilliseconds = null;
   }
 
-  start(callback) {
+  start() {
     //!! Remember to save the interval execution in the intervalId property
     this.intervalId = setInterval(() => {
-      //!!If there is a callback, execute it, it it isn't the code will ignore the execution
-      if(callback) callback()
       this.currentTime += 1;
       //this.currentTime++
     }, 1000);
-
-    //BONUS
-    // this.intervalIdMilliseconds = setInterval(() => {
-    //   if(callback) callback()
-    //   this.currentMilliseconds += 1;
-    // }, 10)
-    
   }
+  // BONUS ===>
+  //   this.intervalId = setInterval(() => {
+  //     this.currentTime += 1;
+  //     //this.currentTime++
+  //   }, 10);
+  // }
 
   getMinutes() {
-    return Math.floor(this.currentTime / 60);
+    return Math.floor(this.currentTime / 60); // Multiply by 100 for the BONUS
   }
 
   getSeconds() {
-    return Math.floor(this.currentTime % 60);
+    return Math.floor(this.currentTime % 60); // Multiply by 100 for the BONUS
   }
 
   getMilliseconds() {
-    // Bonus 
-    return this.currentMilliseconds
+    // BONUS ===> Only works if setInterval is 10 ms
+    return this.currentTime;
   }
 
   computeTwoDigitNumber(value) {
@@ -47,13 +42,13 @@ class Chronometer {
 
   stop() {
     clearInterval(this.intervalId);
-    // Bonus 
-    clearInterval(this.intervalIdMilliseconds)
+    // Bonus
+    clearInterval(this.intervalIdMilliseconds);
   }
 
   reset() {
     this.currentTime = 0;
-    // Bonus 
+    // Bonus
     this.currentMilliseconds = 0;
   }
 
@@ -61,10 +56,10 @@ class Chronometer {
     //Remember you can use a function within a function and pass the return as an argument for another function
     const minutes = this.computeTwoDigitNumber(this.getMinutes());
     const seconds = this.computeTwoDigitNumber(this.getSeconds());
-   // Bonus 
-   const milliseconds = this.computeTwoDigitNumber(this.currentMilliseconds);
+    // Bonus
+    const milliseconds = this.computeTwoDigitNumber(this.currentMilliseconds);
 
-    // Bonus 
+    // Bonus
     //return `${minutes}:${seconds}:${milliseconds}`;
     return `${minutes}:${seconds}`;
   }
